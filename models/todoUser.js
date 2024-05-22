@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
+const todoUserSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
 });
-const TodoUser = mongoose.model("TodoUser", userSchema);
+const TodoUser = mongoose.model("TodoUser", todoUserSchema);
 
-export default TodoUser;
+module.exports = { TodoUser };

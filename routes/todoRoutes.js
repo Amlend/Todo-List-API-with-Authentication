@@ -11,3 +11,17 @@ router.post(
   userAuthentication.authentication,
   todoController.postTodo
 );
+
+router.put(
+  "todos/:id",
+  userAuthentication.authentication,
+  todoController.putTodo
+);
+
+router.delete(
+  "todos/:id",
+  userAuthentication.authentication,
+  todoController.deleteTodo
+);
+
+module.exports = router;

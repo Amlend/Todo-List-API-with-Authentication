@@ -21,3 +21,39 @@ exports.postTodo = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+exports.putTodo = async (req, res) => {
+  try {
+    const { title, description, dueDate } = req.body;
+    const updatedTodo = await Todo.findOneAndUpdate(
+      { _id: req.params.id, user: req.user._id },
+      { title, description, dueDate },
+      { new: true }
+    );
+
+    if (!updatedTodo) {
+      return res.status(404).json({ message: "Todo not found" });
+    }
+
+    res.json(updatedTodo);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+exports.deleteTodo = async (req, res) => {
+  try {
+    const deletedTodo = await Todo.findOneAndDelete({
+      _id: req.params.id,
+      user: req.user._id,
+    });
+
+    if (!deletedTodo) {
+      return res.status(404).json({ message: "Todo not found" });
+    }
+
+    res.json({ message: "Todo deleted successfully" });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
