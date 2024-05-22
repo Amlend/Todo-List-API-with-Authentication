@@ -5,3 +5,5 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
 });
 const TodoUser = mongoose.model("TodoUser", userSchema);
+
+export default TodoUser;
