@@ -13,13 +13,13 @@ router.post(
 );
 
 router.put(
-  "todos/:id",
+  "/todos/:id",
   userAuthentication.authentication,
   todoController.putTodo
 );
 
 router.delete(
-  "todos/:id",
+  "/todos/:id",
   userAuthentication.authentication,
   todoController.deleteTodo
 );
