@@ -2,7 +2,7 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-const TodoUser = require("../models/todoUser");
+const { TodoUser } = require("../models/todoUser");
 
 exports.postUserRegistration = async (req, res) => {
   try {

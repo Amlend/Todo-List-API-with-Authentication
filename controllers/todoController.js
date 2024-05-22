@@ -1,6 +1,6 @@
 const express = require("express");
 
-const Todo = require("../models/todo");
+const { Todo } = require("../models/todo");
 
 exports.getTodo = async (req, res) => {
   try {
