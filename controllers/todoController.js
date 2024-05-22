@@ -4,7 +4,22 @@ const Todo = require("../models/todo");
 
 exports.getTodo = async (req, res) => {
   try {
-    const todos = await Todo.find({ user: req.user._id });
+    const { page = 1, limit = 10, title, dueDate } = req.query;
+    const query = { user: req.user._id };
+
+    if (title) {
+      query.title = { $regex: title, $options: "i" }; // Case-insensitive title search
+    }
+
+    if (dueDate) {
+      query.dueDate = { $gte: new Date(dueDate) }; // Filter todos with due dates greater than or equal to the provided date
+    }
+
+    const todos = await Todo.find(query)
+      .skip((page - 1) * limit)
+      .limit(parseInt(limit))
+      .sort({ dueDate: 1 }); // Sort by due date in ascending order
+
     res.json(todos);
   } catch (error) {
     res.status(500).json({ message: error.message });
