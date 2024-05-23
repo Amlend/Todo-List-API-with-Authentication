@@ -17,6 +17,10 @@ jobs:
         node-version: [20.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
+    env:
+      USERNAME: amlend
+      PASSWORD: riverdale
+
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
@@ -27,7 +31,3 @@ jobs:
     - run: npm install
     - run: npm start
     - run: npm test
-
-    env:
-      USERNAME: amlend
-      PASSWORD: riverdale
