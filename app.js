@@ -2,6 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const swaggerSetup = require("./swagger");
 
 const userRoutes = require("./routes/userRoutes");
 const todoRoutes = require("./routes/todoRoutes");
@@ -10,6 +11,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json({ extended: false }));
+
+// Serve Swagger documentation
+swaggerSetup(app);
 
 // Routers
 app.use(userRoutes);
